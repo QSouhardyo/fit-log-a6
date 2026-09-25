@@ -1,0 +1,33 @@
+'use client'
+import { WorkContext } from '@/context/WorkProvider';
+import { Bookmark } from 'lucide-react';
+import React, { useContext } from 'react';
+
+const SaveBtn = ({ workout }) => {
+
+    const { saveBtn, setSaveBtn } = useContext(WorkContext)
+
+    const handleSaveBtn = () => {
+
+        const allreadyAdded = saveBtn.some(item => item.id === workout.id)
+
+        if (allreadyAdded) {
+            return alert('you have already added')
+        }
+
+        setSaveBtn([...saveBtn, workout])
+        alert('you have successfully added')
+    }
+
+    return (
+        <button
+            onClick={handleSaveBtn}
+            className="flex gap-1 px-5 py-2.5 cursor-pointer rounded-lg border border-gray-600 text-gray-300 text-sm font-bold uppercase tracking-wide hover:border-[#C2F800] hover:text-[#C2F800] transition"
+        >
+            <Bookmark className="w-5 h-5" />
+            Save for later
+        </button>
+    );
+};
+
+export default SaveBtn;
