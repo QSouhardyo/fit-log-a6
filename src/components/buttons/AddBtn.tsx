@@ -2,6 +2,8 @@
 import { WorkContext } from '@/context/WorkProvider';
 import { CalendarPlus2 } from 'lucide-react';
 import React, { useContext, useState } from 'react';
+import { Bounce, toast } from 'react-toastify';
+
 
 const AddBtn = ({ workout }) => {
 
@@ -18,12 +20,32 @@ const AddBtn = ({ workout }) => {
         const allreadyAdded = addBtn.some(item => item.id == workout.id)
 
         if (allreadyAdded) {
-            alert("Already added!");
-            return;
+            toast.warn('Already added!', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+            });
+            return
         }
 
         setAddBtn([...addBtn, workout])
-        alert("You have successfully added!")
+        toast.success("You have added successfully!", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce,
+        });
         // setClicked(true);
 
 

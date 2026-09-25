@@ -4,14 +4,26 @@ import { Clock, Flame, Star, X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useContext } from 'react';
+import { Bounce, toast } from 'react-toastify';
 
 const MySaveCard = ({ workout }) => {
 
     const { saveBtn, setSaveBtn } = useContext(WorkContext);
 
-    const handleRemove2 = (id) => {
+    const handleRemove = (id) => {
         const remove = saveBtn.filter((item) => item.id !== id);
         setSaveBtn(remove)
+        toast.error('Deleted!', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce,
+        });
     };
 
     return (

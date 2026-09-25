@@ -4,6 +4,7 @@ import { Clock, Flame, Star, Check, X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useContext } from 'react';
+import { Bounce, toast } from 'react-toastify';
 
 const MyTodayCard = ({ workout }) => {
 
@@ -14,7 +15,44 @@ const MyTodayCard = ({ workout }) => {
 
         setAddBtn(remove);
 
+
+        toast.error('Deleted!', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce,
+        });
+
+
     };
+
+    const handleMarkAs = (id) => {
+        const remove = addBtn.filter((item) => item.id !== id);
+
+        setAddBtn(remove);
+
+
+        toast.success('Workout Done', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce,
+        });
+
+
+    };
+
+
     return (
         <div
             key={workout.id}
@@ -81,6 +119,9 @@ const MyTodayCard = ({ workout }) => {
                             {/* Mark as Done */}
 
                             <button
+                                onClick={() =>
+                                    handleMarkAs(workout.id)
+                                }
                                 className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-[#C2F800] text-black text-xs font-bold uppercase tracking-wide hover:bg-[#C2F800]/90 transition"
                             >
 
@@ -99,6 +140,7 @@ const MyTodayCard = ({ workout }) => {
                                 onClick={() =>
                                     handleRemove(workout.id)
                                 }
+
                                 className="p-2.5 rounded-lg text-gray-500 hover:text-red-400 hover:bg-red-400/10 transition"
                                 aria-label="Remove workout"
                             >

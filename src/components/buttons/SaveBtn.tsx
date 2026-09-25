@@ -2,6 +2,7 @@
 import { WorkContext } from '@/context/WorkProvider';
 import { Bookmark } from 'lucide-react';
 import React, { useContext } from 'react';
+import { Bounce, toast } from 'react-toastify';
 
 const SaveBtn = ({ workout }) => {
 
@@ -12,11 +13,32 @@ const SaveBtn = ({ workout }) => {
         const allreadyAdded = saveBtn.some(item => item.id === workout.id)
 
         if (allreadyAdded) {
-            return alert('you have already added')
+            toast.warn('Already added!', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+            });
+            return
         }
 
         setSaveBtn([...saveBtn, workout])
-        alert('you have successfully added')
+        toast.success("You have added successfully!", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce,
+        });
     }
 
     return (

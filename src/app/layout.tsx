@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/shared/Navbar";
 import WorkProvider from "@/context/WorkProvider";
 import Footer from "@/components/shared/Footer";
+import { ToastContainer } from "react-toastify";
 
 
 
@@ -32,6 +33,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <Navbar></Navbar>
           {children}
           <Footer></Footer>
+          <ToastContainer />
         </WorkProvider>
 
       </body>
