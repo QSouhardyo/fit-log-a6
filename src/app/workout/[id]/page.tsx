@@ -13,9 +13,9 @@ import {
 } from "lucide-react";
 import Image from 'next/image';
 import Link from 'next/link';
-import { notFound } from "next/navigation";
 import AddBtn from '@/components/buttons/AddBtn';
 import SaveBtn from '@/components/buttons/SaveBtn';
+import { notFound } from 'next/navigation';
 
 const WorkOutDetailsPage = async ({ params }) => {
 
@@ -26,7 +26,8 @@ const WorkOutDetailsPage = async ({ params }) => {
     );
 
     if (!res.ok) {
-        return notFound();
+        notFound()
+
     }
 
     const workout = await res.json();
