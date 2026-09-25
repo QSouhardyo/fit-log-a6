@@ -1,12 +1,12 @@
 # FitLog — Workout Library
 
----
+
 
 ## 🔗 Live Project
 
 **https://fit-log-three-gamma.vercel.app/** 
 
----
+
 
 **FitLog** is a modern workout library web application where users can explore different exercises, view detailed workout information, add workouts to their daily plan, and save their favorite workouts for later.
 
@@ -55,8 +55,3 @@ FitLog is designed to work smoothly on:
 
 
 
-## 🛠️ Getting Started
-
-```bash
-npm install
-npm run dev
