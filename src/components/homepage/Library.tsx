@@ -2,9 +2,9 @@ import React from 'react';
 import WorkOutCard from '../cards/WorkOutCard';
 import { Iworkout } from '@/type/type';
 
-const getAllData = async () => {
+const getAllData = async (): Promise<Iworkout[]> => {
     const res = await fetch('https://api.abcz.workers.dev/api/fitlog')
-    const data = res.json()
+    const data = await res.json()
     return data
 }
 
@@ -32,7 +32,7 @@ const Library = async () => {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         {
-                            workDatas.map((workData): Iworkout => <WorkOutCard key={workData.id} workData={workData}></WorkOutCard>)
+                            workDatas.map((workData) => <WorkOutCard key={workData.id} workData={workData}></WorkOutCard>)
                         }
                     </div>
                 </div>
