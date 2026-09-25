@@ -1,23 +1,19 @@
-import React from 'react';
-import {
-    Clock,
-    Flame,
-    Star,
-    Plus,
-    Bookmark,
-    Dumbbell,
-    BarChart3,
-    Layers,
-    Target,
-    CalendarPlus2
-} from "lucide-react";
 import Image from 'next/image';
-import Link from 'next/link';
 import AddBtn from '@/components/buttons/AddBtn';
 import SaveBtn from '@/components/buttons/SaveBtn';
 import { notFound } from 'next/navigation';
+import { Iworkout } from '@/type/type';
 
-const WorkOutDetailsPage = async ({ params }) => {
+
+interface WorkOutDetailsPageProps {
+    params: Promise<{
+        id: string;
+    }>;
+}
+
+const WorkOutDetailsPage = async ({
+    params
+}: WorkOutDetailsPageProps) => {
 
     const { id } = await params;
 
@@ -26,13 +22,10 @@ const WorkOutDetailsPage = async ({ params }) => {
     );
 
     if (!res.ok) {
-        notFound()
-
+        notFound();
     }
 
-    const workout = await res.json();
-
-
+    const workout: Iworkout = await res.json();
 
     return (
         <main className="min-h-screen bg-dark-900 text-white">
@@ -78,7 +71,7 @@ const WorkOutDetailsPage = async ({ params }) => {
                         {/* Muscle Groups */}
                         <div className="mt-6 flex flex-wrap gap-2">
 
-                            {workout?.muscleGroups?.map((muscle) => (
+                            {workout.muscleGroups.map((muscle: string) => (
                                 <span
                                     key={muscle}
                                     className="text-sm bg-[#C2F800] rounded-full text-black px-4 py-2"
@@ -211,16 +204,16 @@ const WorkOutDetailsPage = async ({ params }) => {
 
                             <ol className="mt-6 space-y-4 list-decimal list-inside">
 
-                                {workout?.instructions?.map((instruction, index) => (
-
-                                    <li
-                                        key={index}
-                                        className="text-gray-400"
-                                    >
-                                        {instruction}
-                                    </li>
-
-                                ))}
+                                {workout.instructions.map(
+                                    (instruction: string, index: number) => (
+                                        <li
+                                            key={index}
+                                            className="text-gray-400"
+                                        >
+                                            {instruction}
+                                        </li>
+                                    )
+                                )}
 
                             </ol>
 
@@ -228,10 +221,9 @@ const WorkOutDetailsPage = async ({ params }) => {
                             {/* BUTTONS */}
                             <div className="mt-8 flex flex-wrap gap-3">
 
-                                <AddBtn workout={workout}></AddBtn>
+                                <AddBtn workout={workout} />
 
-
-                                <SaveBtn workout={workout}></SaveBtn>
+                                <SaveBtn workout={workout} />
 
                             </div>
 

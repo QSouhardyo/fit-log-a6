@@ -1,16 +1,17 @@
 'use client'
 import { WorkContext } from '@/context/WorkProvider';
+import { Iworkout } from '@/type/type';
 import { Clock, Flame, Star, Check, X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useContext } from 'react';
 import { Bounce, toast } from 'react-toastify';
 
-const MyTodayCard = ({ workout }) => {
+const MyTodayCard = ({ workout }: { workout: Iworkout }) => {
 
     const { addBtn, setAddBtn } = useContext(WorkContext);
 
-    const handleRemove = (id) => {
+    const handleRemove = (id: number) => {
         const remove = addBtn.filter((item) => item.id !== id);
 
         setAddBtn(remove);
@@ -31,7 +32,7 @@ const MyTodayCard = ({ workout }) => {
 
     };
 
-    const handleMarkAs = (id) => {
+    const handleMarkAs = (id: number) => {
         const remove = addBtn.filter((item) => item.id !== id);
 
         setAddBtn(remove);
@@ -103,16 +104,15 @@ const MyTodayCard = ({ workout }) => {
 
                             {/* View Details */}
 
-                            <Link href={`/workout/${workout.id}`}>
-                                <button
-                                    className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-full border border-gray-600 text-gray-300 text-xs font-bold uppercase tracking-wide hover:border-[#C2F800] hover:text-[#C2F800] transition"
-                                >
+                            <Link href={`/workout/${workout.id}`}
+                                className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-full border border-gray-600 text-gray-300 text-xs font-bold uppercase tracking-wide hover:border-[#C2F800] hover:text-[#C2F800] transition"
+                            >
 
 
 
-                                    View Details
+                                View Details
 
-                                </button>
+
                             </Link>
 
 

@@ -1,24 +1,42 @@
-'use client'
-import { createContext, useState } from "react";
+"use client";
 
-export const WorkContext = createContext({})
-
-
-
-const WorkProvider = ({ children }) => {
-
-    const [addBtn, setAddBtn] = useState([])
-    const [saveBtn, setSaveBtn] = useState([])
+import { Iworkout } from "@/type/type";
+import { createContext, ReactNode, useState } from "react";
 
 
+interface WorkContextType {
+    addBtn: Iworkout[];
+    setAddBtn: React.Dispatch<React.SetStateAction<Iworkout[]>>;
+
+    saveBtn: Iworkout[];
+    setSaveBtn: React.Dispatch<React.SetStateAction<Iworkout[]>>;
+}
+
+export const WorkContext = createContext<WorkContextType>({
+    addBtn: [],
+    setAddBtn: () => { },
+
+    saveBtn: [],
+    setSaveBtn: () => { },
+});
+
+const WorkProvider = ({ children }: { children: ReactNode }) => {
+
+    const [addBtn, setAddBtn] = useState<Iworkout[]>([]);
+    const [saveBtn, setSaveBtn] = useState<Iworkout[]>([]);
 
     const sharedData = {
-        addBtn, setAddBtn, saveBtn, setSaveBtn
-    }
-    return <WorkContext.Provider value={sharedData}>
-        {children}
-    </WorkContext.Provider>
+        addBtn,
+        setAddBtn,
+        saveBtn,
+        setSaveBtn
+    };
+
+    return (
+        <WorkContext.Provider value={sharedData}>
+            {children}
+        </WorkContext.Provider>
+    );
 };
 
 export default WorkProvider;
-

@@ -1,11 +1,12 @@
 'use client'
 import { WorkContext } from '@/context/WorkProvider';
+import { Iworkout } from '@/type/type';
 import { CalendarPlus2 } from 'lucide-react';
 import React, { useContext, useState } from 'react';
 import { Bounce, toast } from 'react-toastify';
 
 
-const AddBtn = ({ workout }) => {
+const AddBtn = ({ workout }: { workout: Iworkout }) => {
 
     const { addBtn, setAddBtn } = useContext(WorkContext)
     // const [clicked, setClicked] = useState(false);

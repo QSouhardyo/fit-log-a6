@@ -1,17 +1,8 @@
 "use client";
 
 import { WorkContext } from "@/context/WorkProvider";
-import React, { useContext, useState } from "react";
-import Image from "next/image";
-import {
-    Clock,
-    Flame,
-    Star,
-    Trash2,
-    Bookmark,
-    CalendarPlus2,
-    Dumbbell,
-} from "lucide-react";
+import { useContext, useState } from "react";
+import { Dumbbell } from "lucide-react";
 import Link from "next/link";
 import MyTodayCard from "@/components/cards/MyTodayCard";
 import MySaveCard from "@/components/cards/MySaveCard";

@@ -1,16 +1,17 @@
 'use client'
 import { WorkContext } from '@/context/WorkProvider';
+import { Iworkout } from '@/type/type';
 import { Clock, Flame, Star, X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { Bounce, toast } from 'react-toastify';
 
-const MySaveCard = ({ workout }) => {
+const MySaveCard = ({ workout }: { workout: Iworkout }) => {
 
     const { saveBtn, setSaveBtn } = useContext(WorkContext);
 
-    const handleRemove = (id) => {
+    const handleRemove = (id: number) => {
         const remove = saveBtn.filter((item) => item.id !== id);
         setSaveBtn(remove)
         toast.error('Deleted!', {
@@ -76,16 +77,16 @@ const MySaveCard = ({ workout }) => {
 
                             {/* View Details */}
 
-                            <Link href={`/workout/${workout.id}`}>
-                                <button
-                                    className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-full border border-gray-600 text-gray-300 text-xs font-bold uppercase tracking-wide hover:border-[#C2F800] hover:text-[#C2F800] transition"
-                                >
+                            <Link href={`/workout/${workout.id}`}
+                                className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-full border border-gray-600 text-gray-300 text-xs font-bold uppercase tracking-wide hover:border-[#C2F800] hover:text-[#C2F800] transition"
+                            >
 
 
 
-                                    View Details
 
-                                </button>
+                                View Details
+
+
                             </Link>
 
 

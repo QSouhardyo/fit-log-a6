@@ -2,9 +2,10 @@ import React from 'react';
 import { Clock, Flame, Star } from "lucide-react";
 import Image from 'next/image';
 import Link from 'next/link';
+import { Iworkout } from '@/type/type';
 
 
-const WorkOutCard = ({ workData }) => {
+const WorkOutCard = ({ workData }: { workData: Iworkout }) => {
     return (
         <Link
             href={`/workout/${workData.id}`}

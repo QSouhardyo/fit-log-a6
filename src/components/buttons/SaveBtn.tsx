@@ -1,10 +1,11 @@
 'use client'
 import { WorkContext } from '@/context/WorkProvider';
+import { Iworkout } from '@/type/type';
 import { Bookmark } from 'lucide-react';
 import React, { useContext } from 'react';
 import { Bounce, toast } from 'react-toastify';
 
-const SaveBtn = ({ workout }) => {
+const SaveBtn = ({ workout }: { workout: Iworkout }) => {
 
     const { saveBtn, setSaveBtn } = useContext(WorkContext)
 
