@@ -38,7 +38,7 @@ const Navbar = () => {
                         <Image src={Logo} alt="Logo"></Image>
 
                         <span className="font-display text-xl tracking-wide  uppercase">
-                            FitLog
+                            FitLogs
                         </span>
                     </Link>
 
