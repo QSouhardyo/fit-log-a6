@@ -1,4 +1,8 @@
+'use client'
 import { WorkContext } from '@/context/WorkProvider';
+import { Clock, Flame, Star, X } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
 import React, { useContext } from 'react';
 
 const MySaveCard = ({ workout }) => {
@@ -58,43 +62,36 @@ const MySaveCard = ({ workout }) => {
 
                         <div className="flex items-center gap-2 shrink-0">
 
+                            {/* View Details */}
+
+                            <Link href={`/workout/${workout.id}`}>
+                                <button
+                                    className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-full border border-gray-600 text-gray-300 text-xs font-bold uppercase tracking-wide hover:border-[#C2F800] hover:text-[#C2F800] transition"
+                                >
+
+
+
+                                    View Details
+
+                                </button>
+                            </Link>
+
+
+
+
+
+
                             {/* DELETE */}
 
                             <button
                                 onClick={() =>
-                                    handleRemove2(workout.id)
+                                    handleRemove(workout.id)
                                 }
                                 className="p-2.5 rounded-lg text-gray-500 hover:text-red-400 hover:bg-red-400/10 transition"
                                 aria-label="Remove workout"
                             >
 
-                                <Trash2 className="w-5 h-5" />
-
-                            </button>
-
-
-                            {/* ADD TO PLAN */}
-
-                            <button
-                                className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-[#C2F800] text-black text-xs font-bold uppercase tracking-wide hover:bg-[#C2F800]/90 transition"
-                            >
-
-                                <CalendarPlus2 className="w-4 h-4" />
-
-                                Add to Plan
-
-                            </button>
-
-
-                            {/* SAVE */}
-
-                            <button
-                                className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-gray-600 text-gray-300 text-xs font-bold uppercase tracking-wide hover:border-[#C2F800] hover:text-[#C2F800] transition"
-                            >
-
-                                <Bookmark className="w-4 h-4" />
-
-                                Save
+                                < X className="w-5 h-5" />
 
                             </button>
 

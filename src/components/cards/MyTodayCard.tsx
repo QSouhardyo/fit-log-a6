@@ -1,6 +1,8 @@
+'use client'
 import { WorkContext } from '@/context/WorkProvider';
-import { Bookmark, CalendarPlus2, Clock, Flame, Star, Trash2 } from 'lucide-react';
+import { Clock, Flame, Star, Check, X } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { useContext } from 'react';
 
 const MyTodayCard = ({ workout }) => {
@@ -61,6 +63,36 @@ const MyTodayCard = ({ workout }) => {
 
                         <div className="flex items-center gap-2 shrink-0">
 
+                            {/* View Details */}
+
+                            <Link href={`/workout/${workout.id}`}>
+                                <button
+                                    className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-full border border-gray-600 text-gray-300 text-xs font-bold uppercase tracking-wide hover:border-[#C2F800] hover:text-[#C2F800] transition"
+                                >
+
+
+
+                                    View Details
+
+                                </button>
+                            </Link>
+
+
+                            {/* Mark as Done */}
+
+                            <button
+                                className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-[#C2F800] text-black text-xs font-bold uppercase tracking-wide hover:bg-[#C2F800]/90 transition"
+                            >
+
+                                <Check className="w-4 h-4" />
+
+                                Mark as Done
+
+                            </button>
+
+
+
+
                             {/* DELETE */}
 
                             <button
@@ -71,33 +103,7 @@ const MyTodayCard = ({ workout }) => {
                                 aria-label="Remove workout"
                             >
 
-                                <Trash2 className="w-5 h-5" />
-
-                            </button>
-
-
-                            {/* ADD TO PLAN */}
-
-                            <button
-                                className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-[#C2F800] text-black text-xs font-bold uppercase tracking-wide hover:bg-[#C2F800]/90 transition"
-                            >
-
-                                <CalendarPlus2 className="w-4 h-4" />
-
-                                Add to Plan
-
-                            </button>
-
-
-                            {/* SAVE */}
-
-                            <button
-                                className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-gray-600 text-gray-300 text-xs font-bold uppercase tracking-wide hover:border-[#C2F800] hover:text-[#C2F800] transition"
-                            >
-
-                                <Bookmark className="w-4 h-4" />
-
-                                Save
+                                < X className="w-5 h-5" />
 
                             </button>
 
