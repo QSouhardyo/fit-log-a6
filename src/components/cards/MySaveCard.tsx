@@ -1,6 +1,15 @@
-import React from 'react';
+import { WorkContext } from '@/context/WorkProvider';
+import React, { useContext } from 'react';
 
 const MySaveCard = ({ workout }) => {
+
+    const { saveBtn, setSaveBtn } = useContext(WorkContext);
+
+    const handleRemove2 = (id) => {
+        const remove = saveBtn.filter((item) => item.id !== id);
+        setSaveBtn(remove)
+    };
+
     return (
         <div
             key={workout.id}

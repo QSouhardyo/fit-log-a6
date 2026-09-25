@@ -36,10 +36,7 @@ const MyPlanPage = () => {
 
 
 
-    const handleRemove2 = (id) => {
-        const remove = saveBtn.filter((item) => item.id !== id);
-        setSaveBtn(remove)
-    };
+
 
     const sortedWorkouts = [...addBtn].sort((a, b) => {
 
