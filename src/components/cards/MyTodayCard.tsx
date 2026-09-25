@@ -87,7 +87,7 @@ const MyTodayCard = ({ workout }: { workout: Iworkout }) => {
                     </h2>
 
 
-                    {/* EQUIPMENT + BUTTONS */}
+                    {/* EQUIPMENT & BUTTONS */}
 
                     <div className="mt-2 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
 

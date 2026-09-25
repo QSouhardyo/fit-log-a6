@@ -68,7 +68,7 @@ const MyPlanPage = () => {
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
 
-                {/* ================= HEADER ================= */}
+                {/*  HEADER  */}
 
                 <div>
 
@@ -83,7 +83,7 @@ const MyPlanPage = () => {
                 </div>
 
 
-                {/* ================= STATISTICS ================= */}
+                {/* STATISTICS */}
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 mt-8 rounded-xl border border-[#232834] bg-[#222630] overflow-hidden">
 
@@ -134,11 +134,11 @@ const MyPlanPage = () => {
                 </div>
 
 
-                {/* ================= TABS + SORT ================= */}
+                {/* tabs and sort  */}
 
                 <div className="mt-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
 
-                    {/* ================= TABS ================= */}
+                    {/* Tabs */}
 
                     <div className="tabs tabs-box">
 
@@ -174,7 +174,7 @@ const MyPlanPage = () => {
                     </div>
 
 
-                    {/* ================= SORT ================= */}
+                    {/*  SORT  */}
 
                     <div className="flex items-center gap-3">
 
@@ -211,7 +211,7 @@ const MyPlanPage = () => {
                 </div>
 
 
-                {/* ================= TODAY'S PLAN ================= */}
+                {/*  TODAY'S PLAN  */}
 
                 {activeTab === "today" && (
 
@@ -228,7 +228,7 @@ const MyPlanPage = () => {
                 )}
 
 
-                {/* ================= SAVED ================= */}
+                {/*  SAVED */}
 
                 {activeTab === "saved" && (
 
@@ -273,7 +273,7 @@ const MyPlanPage = () => {
                 )}
 
 
-                {/* ================= EMPTY TODAY'S PLAN ================= */}
+                {/* EMPTY TODAY'S PLAN  */}
 
                 {activeTab === "today" && addBtn.length === 0 && (
 
