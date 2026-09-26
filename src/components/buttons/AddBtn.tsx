@@ -9,19 +9,30 @@ import { Bounce, toast } from 'react-toastify';
 const AddBtn = ({ workout }: { workout: Iworkout }) => {
 
     const { addBtn, setAddBtn } = useContext(WorkContext)
-    // const [clicked, setClicked] = useState(false);
 
 
 
     const handleAddBtn = () => {
-        // if (clicked) {
-        //     alert("Already added!");
-        //     return;
-        // }
+
         const allreadyAdded = addBtn.some(item => item.id == workout.id)
 
         if (allreadyAdded) {
             toast.warn('Already added!', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+            });
+            return
+        }
+
+        if (addBtn.length > 4) {
+            toast.warn('You can not add more than 5', {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -47,7 +58,7 @@ const AddBtn = ({ workout }: { workout: Iworkout }) => {
             theme: "light",
             transition: Bounce,
         });
-        // setClicked(true);
+
 
 
 
