@@ -16,6 +16,9 @@ const MyPlanPage = () => {
 
 
 
+    useEffect(() => {
+        setLoading(false);
+    }, []);
 
 
     const totalExercises = addBtn.length;
