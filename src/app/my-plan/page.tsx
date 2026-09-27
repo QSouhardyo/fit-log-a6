@@ -12,12 +12,10 @@ const MyPlanPage = () => {
 
     const [activeTab, setActiveTab] = useState("today");
     const [sortBy, setSortBy] = useState("duration");
-
-    // Loading state
     const [loading, setLoading] = useState(true);
 
 
-    // Page load হওয়ার পর loading শেষ হবে
+
     useEffect(() => {
         setLoading(false);
     }, []);
