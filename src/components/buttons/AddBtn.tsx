@@ -31,7 +31,7 @@ const AddBtn = ({ workout }: { workout: Iworkout }) => {
             return
         }
 
-        if (addBtn.length > 4) {
+        if (addBtn.length > 5) {
             toast.warn('You can not add more than 5', {
                 position: "top-right",
                 autoClose: 5000,

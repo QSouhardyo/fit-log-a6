@@ -11,7 +11,8 @@ import { WorkContext } from "@/context/WorkProvider";
 
 
 const Navbar = () => {
-    const { addBtn, saveBtn } = useContext(WorkContext)
+    // const { addBtn, saveBtn } = useContext(WorkContext)
+    const { addBtn, saveBtn, isMounted } = useContext(WorkContext)
 
     const pathname = usePathname();
 
@@ -79,7 +80,8 @@ const Navbar = () => {
                             Plan
 
                             <span className="bg-black/20 rounded-full w-5 h-5 flex items-center justify-center text-[11px]">
-                                {addBtn.length}
+                                {/* {addBtn.length} */}
+                                {isMounted ? addBtn.length : 0}
                             </span>
                         </Link>
 
