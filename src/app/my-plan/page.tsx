@@ -1,17 +1,27 @@
 "use client";
 
 import { WorkContext } from "@/context/WorkProvider";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Dumbbell } from "lucide-react";
 import Link from "next/link";
 import MyTodayCard from "@/components/cards/MyTodayCard";
 import MySaveCard from "@/components/cards/MySaveCard";
 
 const MyPlanPage = () => {
-    const { addBtn, saveBtn, setAddBtn, setSaveBtn } = useContext(WorkContext);
+    const { addBtn, saveBtn } = useContext(WorkContext);
 
     const [activeTab, setActiveTab] = useState("today");
     const [sortBy, setSortBy] = useState("duration");
+
+    // Loading state
+    const [loading, setLoading] = useState(true);
+
+
+    // Page load হওয়ার পর loading শেষ হবে
+    useEffect(() => {
+        setLoading(false);
+    }, []);
+
 
     const totalExercises = addBtn.length;
 
@@ -24,9 +34,6 @@ const MyPlanPage = () => {
         (total, addBtn) => total + addBtn.caloriesBurned,
         0
     );
-
-
-
 
 
     const sortedWorkouts = [...addBtn].sort((a, b) => {
@@ -46,6 +53,7 @@ const MyPlanPage = () => {
         return 0;
     });
 
+
     const sortedWorkouts2 = [...saveBtn].sort((a, b) => {
 
         if (sortBy === "duration") {
@@ -63,12 +71,13 @@ const MyPlanPage = () => {
         return 0;
     });
 
+
     return (
         <main className="min-h-screen bg-dark-900 text-white">
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
 
-                {/*  HEADER  */}
+                {/* HEADER */}
 
                 <div>
 
@@ -134,7 +143,7 @@ const MyPlanPage = () => {
                 </div>
 
 
-                {/* tabs and sort  */}
+                {/* TABS AND SORT */}
 
                 <div className="mt-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
 
@@ -174,7 +183,7 @@ const MyPlanPage = () => {
                     </div>
 
 
-                    {/*  SORT  */}
+                    {/* SORT */}
 
                     <div className="flex items-center gap-3">
 
@@ -211,87 +220,125 @@ const MyPlanPage = () => {
                 </div>
 
 
-                {/*  TODAY'S PLAN  */}
+                {/* LOADING STATE */}
 
-                {activeTab === "today" && (
+                {loading ? (
 
-                    <div className="mt-6 space-y-4">
+                    <div className="mt-6 text-center bg-[#232732] py-16">
 
-                        {sortedWorkouts.map((workout) => (
+                        <Dumbbell className="w-12 h-12 text-[#C2F800] mx-auto mb-4 animate-pulse" />
 
-                            <MyTodayCard key={workout.id} workout={workout} ></MyTodayCard>
-
-                        ))}
+                        <p className="text-gray-400 text-sm">
+                            Loading workouts…
+                        </p>
 
                     </div>
 
-                )}
+                ) : (
 
+                    <>
 
-                {/*  SAVED */}
+                        {/* TODAY'S PLAN */}
 
-                {activeTab === "saved" && (
+                        {activeTab === "today" && (
 
-                    <div className="mt-6">
+                            <div className="mt-6 space-y-4">
 
-                        {saveBtn && saveBtn.length > 0 ? (
+                                {sortedWorkouts.map((workout) => (
 
-                            <div className="space-y-4">
-
-                                {sortedWorkouts2.map((workout) => (
-
-                                    <MySaveCard key={workout.id} workout={workout}></MySaveCard>
+                                    <MyTodayCard
+                                        key={workout.id}
+                                        workout={workout}
+                                    />
 
                                 ))}
 
                             </div>
 
-                        ) : (
+                        )}
 
-                            /* EMPTY SAVED */
 
-                            <div className="text-center bg-[#232732] py-16">
-                                <Dumbbell className="w-12 h-12 text-dark-500 mx-auto mb-4" />
-                                <h3 className="font-display text-xl uppercase text-white tracking-wide">
-                                    Nothing Here Yet
-                                </h3>
-                                <p className="mt-2 text-gray-500 text-sm max-w-xs mx-auto">
-                                    Browse the library and add a lift to get today moving.
-                                </p>
-                                <Link
-                                    href="/"
-                                    className="inline-flex mt-6 px-6 py-3 bg-[#C2F800] text-black font-bold uppercase tracking-wide text-sm rounded-lg "
-                                >
-                                    Go to workouts
-                                </Link>
+                        {/* SAVED */}
+
+                        {activeTab === "saved" && (
+
+                            <div className="mt-6">
+
+                                {saveBtn.length > 0 ? (
+
+                                    <div className="space-y-4">
+
+                                        {sortedWorkouts2.map((workout) => (
+
+                                            <MySaveCard
+                                                key={workout.id}
+                                                workout={workout}
+                                            />
+
+                                        ))}
+
+                                    </div>
+
+                                ) : (
+
+                                    /* EMPTY SAVED */
+
+                                    <div className="text-center bg-[#232732] py-16">
+
+                                        <Dumbbell className="w-12 h-12 text-dark-500 mx-auto mb-4" />
+
+                                        <h3 className="font-display text-xl uppercase text-white tracking-wide">
+                                            Nothing Here Yet
+                                        </h3>
+
+                                        <p className="mt-2 text-gray-500 text-sm max-w-xs mx-auto">
+                                            Browse the library and add a lift to get today moving.
+                                        </p>
+
+                                        <Link
+                                            href="/"
+                                            className="inline-flex mt-6 px-6 py-3 bg-[#C2F800] text-black font-bold uppercase tracking-wide text-sm rounded-lg"
+                                        >
+                                            Go to workouts
+                                        </Link>
+
+                                    </div>
+
+                                )}
+
                             </div>
 
                         )}
 
-                    </div>
 
-                )}
+                        {/* EMPTY TODAY'S PLAN */}
 
+                        {activeTab === "today" && addBtn.length === 0 && (
 
-                {/* EMPTY TODAY'S PLAN  */}
+                            <div className="mt-6 text-center bg-[#232732] py-16">
 
-                {activeTab === "today" && addBtn.length === 0 && (
+                                <Dumbbell className="w-12 h-12 text-dark-500 mx-auto mb-4" />
 
-                    <div className="text-center bg-[#232732] py-16">
-                        <Dumbbell className="w-12 h-12 text-dark-500 mx-auto mb-4" />
-                        <h3 className="font-display text-xl uppercase text-white tracking-wide">
-                            Nothing Here Yet
-                        </h3>
-                        <p className="mt-2 text-gray-500 text-sm max-w-xs mx-auto">
-                            Browse the library and add a lift to get today moving.
-                        </p>
-                        <Link
-                            href="/"
-                            className="inline-flex mt-6 px-6 py-3 bg-[#C2F800] text-black font-bold uppercase tracking-wide text-sm rounded-lg "
-                        >
-                            Go to workouts
-                        </Link>
-                    </div>
+                                <h3 className="font-display text-xl uppercase text-white tracking-wide">
+                                    Nothing Here Yet
+                                </h3>
+
+                                <p className="mt-2 text-gray-500 text-sm max-w-xs mx-auto">
+                                    Browse the library and add a lift to get today moving.
+                                </p>
+
+                                <Link
+                                    href="/"
+                                    className="inline-flex mt-6 px-6 py-3 bg-[#C2F800] text-black font-bold uppercase tracking-wide text-sm rounded-lg"
+                                >
+                                    Go to workouts
+                                </Link>
+
+                            </div>
+
+                        )}
+
+                    </>
 
                 )}
 
