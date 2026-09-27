@@ -93,7 +93,8 @@ const Navbar = () => {
                             Saved
 
                             <span className="bg-black/20 rounded-full w-5 h-5 flex items-center justify-center text-[11px]">
-                                {saveBtn.length}
+                                {/* {saveBtn.length} */}
+                                {isMounted ? saveBtn.length : 0}
                             </span>
                         </Link>
 

@@ -50,6 +50,26 @@ const WorkProvider = ({ children }: { children: ReactNode }) => {
     }, [addBtn, isMounted]);
 
 
+    // save itme local
+    useEffect(() => {
+        const getSaveItem = localStorage.getItem("work-save");
+        if (getSaveItem) {
+            try {
+                setSaveBtn(JSON.parse(getSaveItem));
+            } catch (e) {
+                console.error("Failed to parse localStorage", e);
+            }
+        }
+        setIsMounted(true);
+    }, []);
+
+
+    useEffect(() => {
+        if (!isMounted) return;
+        localStorage.setItem("work-save", JSON.stringify(saveBtn));
+    }, [saveBtn, isMounted]);
+
+
 
 
     const sharedData = {
